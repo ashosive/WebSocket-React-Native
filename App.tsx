@@ -15,7 +15,13 @@ const App = () => {
   useEffect(() => {
     try {
       let handler = new SocketHandler();
-      handler.sendMessage('Hello');
+      handler.openConnection().then(status => {
+        if (status) {
+          handler.sendMessage('Hello gggg');
+        } else {
+          console.log('Connection Failed');
+        }
+      });
     } catch (error) {
       console.log(error);
     }

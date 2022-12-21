@@ -1,6 +1,7 @@
 export interface SocketHandlerInterface {
+  openConnection: () => Promise<boolean>;
   checkInternetConnection: () => Promise<boolean>;
   server?: WebSocket;
 
-  sendMessage: (message: string) => Promise<boolean>;
+  sendMessage: (message: string) => void;
 }
