@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,25 +10,33 @@ import {
   useColorScheme,
 } from 'react-native';
 import {SocketHandler} from './src/network/SocketHandler';
+import {StorageHandler} from './src/storage/StorageHandler';
 
 const App = () => {
+  let [url, setURL] = useState('pactreon.com');
+  let saveURL = () => {
+    let storageHandler = new StorageHandler();
+    storageHandler.setValue('URL', url);
+  };
   useEffect(() => {
-    try {
-      let handler = new SocketHandler();
-      handler.openConnection().then(status => {
-        if (status) {
-          handler.sendMessage('Hello gggg');
-        } else {
-          console.log('Connection Failed');
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  });
+    let storageHandler = new StorageHandler();
+    storageHandler.getValue('URL').then(r => {
+      console.log(r);
+      setURL(r);
+    });
+  }, []);
   return (
     <SafeAreaView>
-      <Text>Hello</Text>
+      <Text style={styles.sectionContainer}>Server URL</Text>
+      <TextInput
+        value={url}
+        onChangeText={setURL}
+        placeholder="Enter URL"
+        style={styles.input}
+      />
+      <TouchableOpacity onPress={saveURL} style={styles.button}>
+        <Text>Press Here</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

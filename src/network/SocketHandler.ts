@@ -44,6 +44,7 @@ export class SocketHandler implements SocketHandlerInterface {
   }
 
   sendMessage(message: string): void {
+    // @ts-ignore
     this.server.send(message);
   }
 }
