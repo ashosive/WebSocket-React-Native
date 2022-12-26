@@ -1,4 +1,4 @@
-import {StorageHandlerInterface} from './StorageHandlerInterface';
+import {StorageHandlerInterface} from '../contract/StorageHandlerInterface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class StorageHandler implements StorageHandlerInterface {

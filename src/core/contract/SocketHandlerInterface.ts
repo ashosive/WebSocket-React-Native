@@ -4,4 +4,5 @@ export interface SocketHandlerInterface {
   server?: WebSocket;
 
   sendMessage: (message: string) => void;
+  onMessage: (callback: (value: string) => void) => void;
 }
