@@ -44,7 +44,7 @@ const Register = ({navigation}) => {
       const data = {
         name: name,
         email: email,
-        getUniqueId: getUniqueId,
+        uniqueId: getUniqueId,
       };
       const userRegistrationDetails = JSON.stringify(data);
       // @ts-ignore

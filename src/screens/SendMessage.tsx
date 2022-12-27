@@ -62,6 +62,7 @@ const SendMessage = ({navigation}) => {
 
   const getMessageDisplayList = () => {
     if (messageArray.length > 0) {
+      // @ts-ignore
       return messageArray.map((item, index) => (
         <Text style={styles.sectionContainer} key={index}>
           {item}

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -13,9 +14,17 @@ import {StorageHandler} from '../core/storage/StorageHandler';
 const Settings = ({navigation}) => {
   const DEFAULT_URL = 'ws://192.168.1.50:8080';
   let [url, setURL] = useState(DEFAULT_URL);
+
+  const urSetConfirmation = () => {
+    return Alert.alert('URL is Updated', 'Thank you!', [
+      {text: 'OK', onPress: () => navigation.navigate('Home')},
+    ]);
+  };
+
   let saveURL = () => {
     let storageHandler = new StorageHandler();
     storageHandler.setValue('URL', url);
+    urSetConfirmation();
   };
   useEffect(() => {
     let storageHandler = new StorageHandler();
